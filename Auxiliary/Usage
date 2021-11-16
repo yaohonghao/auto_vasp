@@ -8,7 +8,7 @@ chmod +x ./*
 
 3. Use it in VASP running path, like `check_force`
 Input:
-[Ipiro@HPC vasp_opt]$check_force
+[tianer@HPC vasp_opt]$check_force
 Output
 ============================
     EDIFFG: -1e-05 (eV/Å²)
