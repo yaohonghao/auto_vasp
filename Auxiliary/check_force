@@ -1,0 +1,17 @@
+#!/bin/bash
+NATOMS=`awk 'NR==7 {for(i=1;i<=NF;i++)sum+=$i}END{print sum}' POSCAR`
+((plus_1 = NATOMS +1))
+eval "grep -${plus_1} FORCE OUTCAR  | tail -${NATOMS}"| cat > last_force
+
+F_cut=`grep EDIFFG OUTCAR  | awk '{print $3}'`
+x_max=`cat last_force | awk 'BEGIN{max=0}{if (sqrt($4*$4)+0>max+0) max=$4 fi}END{print max}'`
+y_max=`cat last_force | awk 'BEGIN{max=0}{if (sqrt($5*$5)+0>max+0) max=$5 fi}END{print max}'`
+z_max=`cat last_force | awk 'BEGIN{max=0}{if (sqrt($6*$6)+0>max+0) max=$6 fi}END{print max}'`
+
+
+echo '============================'
+echo ${F_cut} | awk '{printf("    EDIFFG: %g (eV/Å²)\n",-$1)}'
+echo '----------------------------'
+echo '  x_max    y_max     z_max'
+echo ${x_max}' ' ${y_max} ' '${z_max}
+echo '============================'
