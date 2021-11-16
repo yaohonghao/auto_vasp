@@ -1,0 +1,18 @@
+0. Copy the directory in Linux system
+
+1. Add path to .bashrc file
+export PATH=$PATH:/userhome/where_Auxiliary
+
+2. Alter the executive persmision in Auxiliary directory
+chmod +x ./*
+
+3. Use it in VASP running path, like `check_force`
+Input:
+[Ipiro@HPC vasp_opt]$check_force
+Output
+============================
+    EDIFFG: -1e-05 (eV/Å²)
+----------------------------
+  x_max    y_max     z_max
+0.358035  0.168237  0.096729
+============================
